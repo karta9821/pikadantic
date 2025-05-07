@@ -1,5 +1,8 @@
 # Pikadantic
 
+[![CI](https://img.shields.io/github/actions/workflow/status/karta9821/pikadantic/test.yml)](https://github.com/karta9821/pikadantic/actions?query=event%3Apush+branch%3Amaster+workflow%3ACI)
+[![pypi](https://img.shields.io/pypi/v/pikadantic.svg)](https://pypi.python.org/pypi/pikadantic)
+[![versions](https://img.shields.io/pypi/pyversions/pikadantic.svg)](https://github.com/karta9821/pikadantic)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **Pikadantic** is a Python library that integrates [Pika](https://github.com/pika/pika/tree/main/pika) with [Pydantic](https://docs.pydantic.dev/latest/) to provide robust data validation for RabbitMQ messaging.
@@ -44,4 +47,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 🙏 Acknowledgments
 
-This project was inspired by [pika-pydantic](https://github.com/ttamg/pika-pydantic/tree/main/pika_pydantic), which elegantly combines Pika and Pydantic for message validation.
+This project was inspired by [pika-pydantic](https://github.com/ttamg/pika-pydantic/tree/main/pika_pydantic).
