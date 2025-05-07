@@ -14,6 +14,7 @@ install: .uv
 	uv sync --frozen --group all --all-extras
 	uv pip install pre-commit
 	uv run pre-commit install --install-hooks
+	uv pip install -e .
 
 .PHONY: rebuild-lockfiles  ## Rebuild lockfiles from scratch, updating all dependencies
 rebuild-lockfiles: .uv
