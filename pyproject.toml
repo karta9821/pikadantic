@@ -84,6 +84,13 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "E402"]  # Ignore unused imports and imports not at top
+"tests/**/*.py" = [
+    # at least this three should be fine in tests:
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in `*args`
+]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
