@@ -1,0 +1,29 @@
+[run]
+include =
+  pikadantic/*
+  tests/*
+omit =
+    pikadantic/__init__.py
+    pikadantic/__version__.py
+parallel = 1
+branch = 1
+disable_warnings = include-ignored
+data_file = .coverage
+
+[paths]
+source = pikadantic/
+
+[report]
+skip_covered = True
+show_missing = True
+exclude_lines =
+    ^\s*if __name__\s*==\s*['"]__main__['"]\s*:
+    ^\s*#\s*pragma: no cover
+    ^\s*raise NotImplementedError\b
+    ^\s*return NotImplemented\b
+    ^\s*assert False(,|$)
+
+    ^\s*if TYPE_CHECKING:
+    ^\s*@overload( |$)
+
+    ^\s*@pytest\.mark\.xfail
