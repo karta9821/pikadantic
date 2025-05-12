@@ -21,10 +21,52 @@ Install Pikadantic using pip:
 pip install pikadantic
 ```
 
-
-
 ## 🧩 Example Usage
-<!-- TODO: Add examples -->
+
+Here's a simple example of how to use Pikadantic with RabbitMQ:
+
+```python
+from pika import BlockingConnection, ConnectionParameters
+from pydantic import BaseModel
+from pikadantic import validate_body
+
+# Define your message model
+class UserMessage(BaseModel):
+    user_id: int
+    name: str
+    email: str
+
+# Create a connection
+connection = BlockingConnection(ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Define your message handler with validation
+@validate_body(UserMessage)
+def handle_message(channel, method, properties, body):
+    # The body is already validated against UserMessage model
+    print(f"Received message: {body}")
+
+# Alternative approach using only_model=True
+@validate_body(UserMessage, only_model=True)
+def handle_message_simplified(message: UserMessage):
+    # You get the validated model directly
+    print(f"User {message.name} with ID {message.user_id}")
+
+# Set up consumer
+channel.basic_consume(
+    queue='user_queue',
+    on_message_callback=handle_message
+)
+
+# Start consuming
+channel.start_consuming()
+```
+
+In this example:
+- We define a `UserMessage` model using Pydantic
+- The `validate_body` decorator ensures that incoming messages match our model
+- We can use either the standard callback format or simplified model-only format
+- Invalid messages will raise `PikadanticValidationError`
 
 ## 🛠️ Contributing
 
